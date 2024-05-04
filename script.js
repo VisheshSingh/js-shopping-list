@@ -32,6 +32,11 @@ function onAddItemClick(e) {
     formBtn.style.background = '#333';
     formBtn.innerHTML = `
   <i class="fa-solid fa-plus"></i> Add Item`;
+  } else {
+    if (checkIfItemExists(newItem)) {
+      alert('Item already exists');
+      return;
+    }
   }
 
   addItemToNode(newItem);
@@ -74,6 +79,11 @@ function onClickItem(e) {
     setItemToEdit(e.target);
   }
   checkUI();
+}
+
+function checkIfItemExists(item) {
+  let itemsFromStorage = getItemsFromStorage();
+  return itemsFromStorage.includes(item);
 }
 
 function removeItem(item) {
